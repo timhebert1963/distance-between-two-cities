@@ -63,7 +63,7 @@ def display_state_abbr():
 # **** End of function display_state_abbr() **** #
 
 
-def intro_message(debug):
+def intro_message():
 
     # intro message explaining user will be asked for input of the two cities to calculate the distance between
     print(" You will be asked to enter the city and the state for the start city and state,")
@@ -73,16 +73,26 @@ def intro_message(debug):
 # **** End of function intro_message() **** #
 
 
-def ask_for_two_cities(debug):
+def ask_for_two_cities():
 
     # get input from user of the two cities and states
     city1  = input(" Enter 1st city to calculate distance from:  ")
-    state1 = input(" Enter the state {} is located  ".format(city1))
+    state1 = input(" Enter the state {} is located  ".format(city1.title()))
+
+    # make sure multi word city names are capitalized
+    # make sure state abbreviations are upper case
+    city1  = city1.title()
+    state1 = state1.upper()
 
     print('\n')
 
     city2  = input(" Enter 2nd city to calculate distance to  :  ")
-    state2 = input(" Enter the state {} is located  ".format(city2))
+    state2 = input(" Enter the state {} is located  ".format(city2.title()))
+
+    # make sure multi word city names are capitalized
+    # make sure state abbreviations are upper case
+    city2  = city2.title()
+    state2 = state2.upper()
 
     for i in range(2):
         print('\n')
@@ -93,25 +103,25 @@ def ask_for_two_cities(debug):
 # **** End of function ask_for_two_cities() **** #
 
 
-def calculate_dist(debug, city1, state1, city2, state2):
+def calculate_dist(city1, state1, city2, state2):
 
     # approximate radius of earth in km
     # Rm is the mile representation for Radius
-    R = get_radius_of_earth_km(debug)
-    Rm = convert_km_to_miles(debug, R)
+    R = get_radius_of_earth_km()
+    Rm = convert_km_to_miles(R)
 
     # start city latitue and Longitude in degrees - lat1 and lon1
     # you need to get the degrees for lat1 and lon1
     #
     # radians(x) converts degrees to radians
-    lat1_d, lon1_d = get_degrees(debug, city1, state1)
-    lat1_r, lon1_r = get_radians(debug, lat1_d, lon1_d)
+    lat1_d, lon1_d = get_degrees(city1, state1)
+    lat1_r, lon1_r = get_radians(lat1_d, lon1_d)
 
     # destination city latitue and Longitude in degrees - lat2 and lon2
     #
     # radians(x) converts degrees to radians
-    lat2_d, lon2_d = get_degrees(debug, city2, state2)
-    lat2_r, lon2_r = get_radians(debug, lat2_d, lon2_d)
+    lat2_d, lon2_d = get_degrees(city2, state2)
+    lat2_r, lon2_r = get_radians(lat2_d, lon2_d)
 
     # distance between lon2_r and lon1_r (two longitudes)
     # distance between lat2_r and lat1_r (two latitudes)
@@ -133,7 +143,7 @@ def calculate_dist(debug, city1, state1, city2, state2):
 # **** End of function calculate_dist() **** #
 
 
-def get_radius_of_earth_km(debug):
+def get_radius_of_earth_km():
 
     # radius of earth in kilometers
     R = 6373.0
@@ -142,7 +152,7 @@ def get_radius_of_earth_km(debug):
 # **** End of function radius_of_earth_km() **** #
 
 
-def convert_km_to_miles(debug, distance):
+def convert_km_to_miles(distance):
 
     # convert km to miles
     KILOMETERS_TO_MILES = 0.621371
@@ -152,7 +162,7 @@ def convert_km_to_miles(debug, distance):
 # **** End of function convert_km_to_miles() **** #
 
 
-def get_degrees(debug, city, state):
+def get_degrees(city, state):
 
     city_state = city + ', ' + state
 
@@ -171,7 +181,7 @@ def get_degrees(debug, city, state):
 # **** End of function get_degrees() **** #
 
 
-def get_radians(debug, lat, lon):
+def get_radians(lat, lon):
 
     # return radians of lat, lon
     lat_r = radians(lat)
@@ -182,54 +192,59 @@ def get_radians(debug, lat, lon):
 # **** End of function get_radians() **** #
 
 
-def distance_banner(debug, city1, state1, city2, state2, distance):
+def distance_banner(city1, state1, city2, state2, distance):
 
     # strings to display in display banner
     first_string  = ("Distance Between Two Cities")
     second_string = ("The starting city is {}, {}".format(city1, state1))
     third_string  = ("Destination  city is {}, {}".format(city2, state2))
-    fourth_string = ("The distance between {}, {} and {}, {} is {} miles".format(city1, state1, city2, state2, distance))
+    fourth_string = ("The distance between {}, {} and {}, {} is {} miles".format(city1, state1, \
+                                                                                 city2, state2, \
+                                                                                      distance))
 
     # assign values to Banner object attributes
-    banner_object = assign_banner_attributes(debug, first_string, second_string, third_string, fourth_string)
+    banner_object = assign_banner_attributes(first_string, second_string, third_string, fourth_string)
 
     # call display_banner
-    display_banner(debug, banner_object)
+    display_banner(banner_object)
     del banner_object
 
 # **** End of function get_radians() **** #
 
 
-def thank_you_for_exploring_banner(debug):
+def thank_you_for_exploring_banner():
 
     # strings to display in display banner
     first_string  = ("Thank You for Exploring the")
     second_string = ("Distance Between Two Cities!!")
 
     # assign values to Banner object attributes
-    banner_object = assign_banner_attributes(debug, first_string, second_string)
+    banner_object = assign_banner_attributes(first_string, second_string)
 
     # call display_banner
-    display_banner(debug, banner_object)
+    display_banner(banner_object)
     del banner_object
 
 # **** End of function get_radians() **** #
 
 
-def continue_exploring_distance(debug):
+def continue_exploring_distance():
 
     valid_answer = False
 
     while not valid_answer:
         answer = input(" Would you like to continue exploring the distance between two cities?  'y' or 'n' ")
 
+        # check for 'y' or 'n' input
         if answer.lower() == 'y' or answer.lower() == 'n':
             valid_answer = True
 
+        # ask user to try again
         else:
             print(" You did not enter 'y' or 'n'. Please try again!")
             print('\n')
 
+    # valid answer given - return True or False
     if answer.lower() == 'y':
         return True
 

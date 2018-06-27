@@ -3,14 +3,15 @@ class Banner():
     class Banner() used for creating different banners to display to user.
     '''
 
-    def __init__(self, debug, string_list):
-
-        self.debug = debug
+    def __init__(self, string_list):
 
         self.row_length         = 77              # length of all banner rows
         self.first_and_last_row = ''              # 1st and last row of banner
         self.blank_space_row    = ''              # rows in banner with blank spaces
         self.string_list        = string_list     # a list of strings for string display
+
+    # **** End of Banner.__init__() **** #
+
 
     def create_first_and_last_row(self):
 
@@ -19,7 +20,7 @@ class Banner():
         for i in range(self.row_length):
             self.first_and_last_row = self.first_and_last_row + '*'
 
-        # **** End of Banner.create_first_and_last_row() **** #
+    # **** End of Banner.create_first_and_last_row() **** #
 
 
     def get_first_and_last_row(self):
@@ -27,7 +28,7 @@ class Banner():
         # return the self.first_and_last_row to display in banner
         return self.first_and_last_row
 
-        # **** End of Banner.get_first_and_last_row() **** #
+    # **** End of Banner.get_first_and_last_row() **** #
 
 
     def create_blank_space_row(self):
@@ -40,8 +41,7 @@ class Banner():
             else:
                 self.blank_space_row = self.blank_space_row + " "
 
-
-        # **** End of Banner.create_blank_space_row() **** #
+    # **** End of Banner.create_blank_space_row() **** #
 
 
     def get_blank_space_row(self):
@@ -49,7 +49,7 @@ class Banner():
         # return self.blank_space_row to display in banner
         return self.blank_space_row
 
-        # **** End of Banner.get_blank_space_row() **** #
+    # **** End of Banner.get_blank_space_row() **** #
 
 
     def create_string_list(self):
@@ -81,14 +81,14 @@ class Banner():
             self.string_list[i] = asterisk + before_string_spaces + self.string_list[i] + after_string_spaces + asterisk
 
 
-        # **** End of Banner.create_string_list() **** #
+    # **** End of Banner.create_string_list() **** #
 
     def get_string_list(self):
 
         # returns self.string_list for display in banner
         return self.string_list
 
-        # **** End of Banner.get_string_list() **** #
+    # **** End of Banner.get_string_list() **** #
 
 
-    # **** End of class Banner() **** #
+# **** End of class Banner() **** #

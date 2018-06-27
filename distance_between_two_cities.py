@@ -1,7 +1,7 @@
 from functions_distance_between_two_cities import *
 import os
 
-def main(debug):
+def main():
     '''
     a googlemaps geocode api_key is needed to run this script
     
@@ -11,8 +11,9 @@ def main(debug):
     '''
 
     # explain input is needed from user of the two cities, states to calculate distance
-    intro_message(debug)
+    intro_message()
 
+    # controls the while loop
     continue_exploring = True
 
     while continue_exploring:
@@ -25,45 +26,40 @@ def main(debug):
         input(" Press Enter to continue")
 
         # clear the screen
-        if not debug:
-            clear_screen()
+        clear_screen()
 
         # display 50 state abbreviations and names
         display_state_abbr()
         print('\n')
 
         # call ask_for_two_cities() and return the cities and state names
-        city1, state1, city2, state2 = ask_for_two_cities(debug)
+        city1, state1, city2, state2 = ask_for_two_cities()
 
         # calculate the distance between two cities
-        distance = calculate_dist(debug, city1, state1, city2, state2)
+        distance = calculate_dist(city1, state1, city2, state2)
 
         # clear the screen
-        if not debug:
-            clear_screen()
+        clear_screen()
 
         # display a banner informing user of the distance
-        distance_banner(debug, city1, state1, city2, state2, distance)
+        distance_banner(city1, state1, city2, state2, distance)
 
         for i in range(4):
             print('\n')
 
-        continue_exploring = continue_exploring_distance(debug)
+        continue_exploring = continue_exploring_distance()
 
-        if not debug:
-            clear_screen()
+        clear_screen()
 
-    thank_you_for_exploring_banner(debug)
+    thank_you_for_exploring_banner()
 
 # **** End of function main() **** #
 
-debug = False
 
-if not debug:
-    clear_screen()
-    print('\n')
-    print('\n')
+clear_screen()
+print('\n')
+print('\n')
 
 #display_state_abbr()
 
-main(debug)
+main()
